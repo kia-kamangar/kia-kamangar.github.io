@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kianoosh Kamangar - Software Engineer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'display': ['Space Grotesk', 'sans-serif'],
+                        'body': ['Inter', 'sans-serif'],
+                    },
+                    animation: {
+                        'bounce-slow': 'bounce 3s infinite',
+                        'wiggle': 'wiggle 1s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'slide-in-bottom': 'slideInBottom 0.8s ease-out',
+                        'slide-in-left': 'slideInLeft 0.8s ease-out',
+                        'slide-in-right': 'slideInRight 0.8s ease-out',
+                        'zoom-in': 'zoomIn 0.8s ease-out',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(-3deg); }
+            50% { transform: rotate(3deg); }
+        }
+        
+        @keyframes slideInBottom {
+            from {
+                opacity: 0;
+                transform: translateY(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        .bg-grid {
+            background-image: 
+                linear-gradient(rgba(34, 197, 94, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(34, 197, 94, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+        
+        .text-gradient-orange {
+            background: linear-gradient(135deg, #f97316, #ea580c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .text-gradient-green {
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .text-gradient-blue {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px) rotate(1deg);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .blob {
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            animation: blob 8s ease-in-out infinite;
+        }
+        
+        @keyframes blob {
+            0%, 100% {
+                border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            }
+            25% {
+                border-radius: 58% 42% 75% 25% / 76% 46% 54% 24%;
+            }
+            50% {
+                border-radius: 50% 50% 33% 67% / 55% 27% 73% 45%;
+            }
+            75% {
+                border-radius: 33% 67% 58% 42% / 63% 68% 32% 37%;
+            }
+        }
+        
+        .clip-polygon {
+            clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
+        }
+        
+        .rotate-text {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-gray-900 font-body overflow-x-hidden">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/80 backdrop-blur-xl z-50 border-b border-gray-200">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="text-2xl font-display font-bold text-gradient-orange">K.K</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-gray-700 hover:text-orange-500 transition-colors font-medium">Home</a>
+                    <a href="#about" class="text-gray-700 hover:text-green-500 transition-colors font-medium">About</a>
+                    <a href="#work" class="text-gray-700 hover:text-blue-500 transition-colors font-medium">Work</a>
+                    <a href="#skills" class="text-gray-700 hover:text-purple-500 transition-colors font-medium">Skills</a>
+                    <a href="#contact" class="text-gray-700 hover:text-pink-500 transition-colors font-medium">Contact</a>
+                </div>
+                <button class="md:hidden">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen relative overflow-hidden bg-gradient-to-br from-orange-50 via-white to-green-50">
+        <!-- Background Elements -->
+        <div class="absolute top-20 right-20 w-32 h-32 bg-orange-200 blob opacity-60"></div>
+        <div class="absolute bottom-20 left-20 w-24 h-24 bg-green-200 blob opacity-40" style="animation-delay: 2s;"></div>
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-r from-blue-100 to-purple-100 blob opacity-30" style="animation-delay: 4s;"></div>
+        
+        <div class="container mx-auto px-6 h-screen flex items-center">
+            <div class="grid lg:grid-cols-12 gap-8 items-center w-full">
+                <!-- Left Content -->
+                <div class="lg:col-span-7 animate-slide-in-left">
+                    <div class="mb-6">
+                        <span class="px-4 py-2 bg-orange-100 text-orange-700 rounded-full text-sm font-medium">👋 Available for new opportunities</span>
+                    </div>
+                    
+                    <h1 class="text-7xl lg:text-8xl font-display font-bold leading-none mb-6">
+                        <span class="text-gray-900">KIA</span><br>
+                        <span class="text-gradient-orange">NOOSH</span>
+                    </h1>
+                    
+                    <div class="mb-8">
+                        <h2 class="text-2xl lg:text-3xl font-display font-medium text-gray-700 mb-4">
+                            Software Engineer
+                        </h2>
+                        <p class="text-lg text-gray-600 max-w-lg">
+                            Building robust applications with <span class="font-semibold text-gradient-orange">Ruby on Rails</span> 
+                            and modern web technologies. 5+ years of turning ideas into reality.
+                        </p>
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-4 mb-8">
+                        <a href="#contact" class="px-8 py-3 bg-orange-500 text-white rounded-full font-semibold hover:bg-orange-600 transition-all duration-300 hover:scale-105">
+                            Let's Talk
+                        </a>
+                        <a href="#work" class="px-8 py-3 border-2 border-gray-300 text-gray-700 rounded-full font-semibold hover:border-gray-400 hover:bg-gray-50 transition-all duration-300">
+                            See My Work
+                        </a>
+                    </div>
+                    
+                    <div class="flex items-center space-x-6">
+                        <div class="flex -space-x-2">
+                            <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                                <i class="fab fa-ruby text-white text-sm"></i>
+                            </div>
+                            <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
+                                <i class="fab fa-vuejs text-white text-sm"></i>
+                            </div>
+                            <div class="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center">
+                                <i class="fas fa-database text-white text-sm"></i>
+                            </div>
+                        </div>
+                        <span class="text-sm text-gray-500">Ruby • Vue • PostgreSQL</span>
+                    </div>
+                </div>
+                
+                <!-- Right Content -->
+                <div class="lg:col-span-5 animate-slide-in-right">
+                    <div class="relative">
+                        <div class="w-80 h-80 mx-auto relative">
+                            <!-- Main Profile Circle -->
+                            <div class="w-full h-full bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 rounded-full shadow-2xl">
+                                <div class="w-full h-full rounded-full border-8 border-white shadow-inner flex items-center justify-center">
+                                    <span class="text-6xl font-display font-bold text-white">K</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Floating Stats -->
+                            <div class="absolute -top-4 -right-4 bg-white p-4 rounded-2xl shadow-lg card-hover">
+                                <div class="text-2xl font-bold text-orange-500">5+</div>
+                                <div class="text-xs text-gray-500">Years</div>
+                            </div>
+                            
+                            <div class="absolute -bottom-4 -left-4 bg-white p-4 rounded-2xl shadow-lg card-hover">
+                                <div class="text-2xl font-bold text-green-500">15+</div>
+                                <div class="text-xs text-gray-500">Features</div>
+                            </div>
+                            
+                            <div class="absolute top-1/2 -right-8 bg-white p-3 rounded-xl shadow-lg card-hover">
+                                <i class="fas fa-code text-blue-500 text-xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+            <div class="animate-bounce">
+                <i class="fas fa-chevron-down text-gray-400 text-2xl"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid lg:grid-cols-2 gap-16 items-start">
+                    <!-- Left Column -->
+                    <div class="animate-slide-in-left">
+                        <div class="sticky top-32">
+                            <h2 class="text-6xl font-display font-bold text-gray-900 mb-8">
+                                About<br>
+                                <span class="text-gradient-green">Me</span>
+                            </h2>
+                            
+                            <div class="w-20 h-1 bg-gradient-to-r from-green-500 to-green-600 mb-8"></div>
+                            
+                            <p class="text-xl text-gray-600 leading-relaxed mb-8">
+                                I'm an enthusiastic software engineer who loves turning complex problems into elegant solutions. 
+                                Currently based in Berlin, I work with modern technologies to build applications that make a difference.
+                            </p>
+                            
+                            <div class="space-y-4">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-3 h-3 bg-orange-500 rounded-full"></div>
+                                    <span class="text-gray-700">5+ years experience with Ruby on Rails</span>
+                                </div>
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                                    <span class="text-gray-700">Strong foundation in TDD and best practices</span>
+                                </div>
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-3 h-3 bg-blue-500 rounded-full"></div>
+                                    <span class="text-gray-700">Passionate about continuous learning</span>
+                                </div>
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-3 h-3 bg-purple-500 rounded-full"></div>
+                                    <span class="text-gray-700">Team player with strong communication skills</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Column -->
+                    <div class="space-y-8 animate-slide-in-right">
+                        <!-- Education Card -->
+                        <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-3xl card-hover">
+                            <div class="flex items-start justify-between mb-6">
+                                <div>
+                                    <h3 class="text-2xl font-display font-bold text-gray-900 mb-2">Education</h3>
+                                    <div class="w-16 h-1 bg-blue-500"></div>
+                                </div>
+                                <i class="fas fa-graduation-cap text-3xl text-blue-500"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-semibold text-gray-900">Bachelor of Computer Software Engineering</h4>
+                                <p class="text-blue-600 font-medium">Payam Noor University</p>
+                                <p class="text-gray-500 text-sm mb-4">2015 - 2019</p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-3 py-1 bg-blue-200 text-blue-800 rounded-full text-xs">Data Structures</span>
+                                    <span class="px-3 py-1 bg-blue-200 text-blue-800 rounded-full text-xs">Software Testing</span>
+                                    <span class="px-3 py-1 bg-blue-200 text-blue-800 rounded-full text-xs">Cloud Computing</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Languages Card -->
+                        <div class="bg-gradient-to-br from-green-50 to-green-100 p-8 rounded-3xl card-hover">
+                            <div class="flex items-start justify-between mb-6">
+                                <div>
+                                    <h3 class="text-2xl font-display font-bold text-gray-900 mb-2">Languages</h3>
+                                    <div class="w-16 h-1 bg-green-500"></div>
+                                </div>
+                                <i class="fas fa-globe text-3xl text-green-500"></i>
+                            </div>
+                            <div class="grid grid-cols-3 gap-4">
+                                <div class="text-center">
+                                    <div class="text-2xl font-bold text-green-600">EN</div>
+                                    <div class="text-xs text-gray-500">Professional</div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-2xl font-bold text-green-600">KU</div>
+                                    <div class="text-xs text-gray-500">Native</div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-2xl font-bold text-green-600">FA</div>
+                                    <div class="text-xs text-gray-500">Native</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Location Card -->
+                        <div class="bg-gradient-to-br from-purple-50 to-purple-100 p-8 rounded-3xl card-hover">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <h3 class="text-2xl font-display font-bold text-gray-900 mb-2">Based In</h3>
+                                    <p class="text-lg text-purple-600 font-semibold">Berlin, Germany</p>
+                                    <p class="text-sm text-gray-500">Open to remote opportunities</p>
+                                </div>
+                                <div class="text-4xl">🇩🇪</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work Experience Section -->
+    <section id="work" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16 animate-slide-in-bottom">
+                    <h2 class="text-6xl font-display font-bold text-gray-900 mb-6">
+                        My <span class="text-gradient-blue">Journey</span>
+                    </h2>
+                    <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-blue-600 mx-auto mb-8"></div>
+                    <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                        Building impactful software solutions across different companies and technologies
+                    </p>
+                </div>
+                
+                <div class="space-y-16">
+                    <!-- DataGuard -->
+                    <div class="animate-zoom-in">
+                        <div class="grid lg:grid-cols-12 gap-8 items-center">
+                            <div class="lg:col-span-7">
+                                <div class="bg-white p-8 rounded-3xl shadow-lg card-hover">
+                                    <div class="flex items-start justify-between mb-6">
+                                        <div>
+                                            <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-medium">Current</span>
+                                            <h3 class="text-3xl font-display font-bold text-gray-900 mt-4 mb-2">Software Engineer</h3>
+                                            <p class="text-xl text-blue-600 font-semibold">DataGuard</p>
+                                            <p class="text-gray-500">08/2022 - Present • Berlin</p>
+                                        </div>
+                                        <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center">
+                                            <i class="fas fa-shield-alt text-white text-2xl"></i>
+                                        </div>
+                                    </div>
+                                    
+                                    <p class="text-gray-600 mb-6 leading-relaxed">
+                                        Legal tech for privacy tools and GDPR compliance. Working on cutting-edge solutions for data protection and privacy management.
+                                    </p>
+                                    
+                                    <div class="grid md:grid-cols-2 gap-4">
+                                        <div class="space-y-3">
+                                            <div class="flex items-start">
+                                                <i class="fas fa-rocket text-orange-500 mr-3 mt-1"></i>
+                                                <span class="text-sm text-gray-600">15+ production features delivered</span>
+                                            </div>
+                                            <div class="flex items-start">
+                                                <i class="fas fa-api text-orange-500 mr-3 mt-1"></i>
+                                                <span class="text-sm text-gray-600">Robust REST API development</span>
+                                            </div>
+                                        </div>
+                                        <div class="space-y-3">
+                                            <div class="flex items-start">
+                                                <i class="fas fa-users text-orange-500 mr-3 mt-1"></i>
+                                                <span class="text-sm text-gray-600">Close collaboration with Product Owner</span>
+                                            </div>
+                                            <div class="flex items-start">
+                                                <i class="fas fa-vial text-orange-500 mr-3 mt-1"></i>
+                                                <span class="text-sm text-gray-600">Enhanced test coverage with Cypress</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="lg:col-span-5">
+                                <div class="relative">
+                                    <div class="text-8xl font-display font-bold text-gray-100 absolute -top-8 -left-4">01</div>
+                                    <div class="relative z-10 bg-gradient-to-br from-blue-400 to-blue-600 p-8 rounded-3xl text-white">
+                                        <h4 class="text-2xl font-bold mb-4">Key Technologies</h4>
+                                        <div class="grid grid-cols-2 gap-3">
+                                            <div class="bg-white/20 p-3 rounded-lg text-center">
+                                                <i class="fab fa-ruby text-2xl mb-2"></i>
+                                                <p class="text-sm">Ruby on Rails</p>
+                                            </div>
+                                            <div class="bg-white/20 p-3 rounded-lg text-center">
+                                                <i class="fab fa-vuejs text-2xl mb-2"></i>
+                                                <p class="text-sm">Vue.js</p>
+                                            </div>
+                                            <div class="bg-white/20 p-3 rounded-lg text-center">
+                                                <i class="fas fa-database text-2xl mb-2"></i>
+                                                <p class="text-sm">PostgreSQL</p>
+                                            </div>
+                                            <div class="bg-white/20 p-3 rounded-lg text-center">
+                                                <i class="fab fa-docker text-2xl mb-2"></i>
+                                                <p class="text-sm">Docker</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Buzzjective -->
+                    <div class="animate-zoom-in">
+                        <div class="grid lg:grid-cols-12 gap-8 items-center">
+                            <div class="lg:col-span-5 order-2 lg:order-1">
+                                <div class="relative">
+                                    <div class="text-8xl font-display font-bold text-gray-100 absolute -top-8 -right-4">02</div>
+                                    <div class="relative z-10 bg-gradient-to-br from-green-400 to-green-600 p-8 rounded-3xl text-white">
+                                        <h4 class="text-2xl font-bold mb-4">Growth & Learning</h4>
+                                        <div class="space-y-4">
+                                            <div class="flex items-center">
+                                                <i class="fas fa-seedling mr-3"></i>
+                                                <span>Junior to experienced developer</span>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <i class="fas fa-code mr-3"></i>
+                                                <span>TDD methodology adoption</span>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <i class="fas fa-puzzle-piece mr-3"></i>
+                                                <span>API integrations mastery</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="lg:col-span-7 order-1 lg:order-2">
+                                <div class="bg-white p-8 rounded-3xl shadow-lg card-hover">
+                                    <div class="flex items-start justify-between mb-6">
+                                        <div>
+                                            <h3 class="text-3xl font-display font-bold text-gray-900 mb-2">Junior Software Engineer</h3>
+                                            <p class="text-xl text-green-600 font-semibold">Buzzjective</p>
+                                            <p class="text-gray-500">05/2020 - 07/2022 • Istanbul</p>
+                                        </div>
+                                        <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center">
+                                            <i class="fas fa-rocket text-white text-2xl"></i>
+                                        </div>
+                                    </div>
+                                    
+                                    <p class="text-gray-600 mb-6 leading-relaxed">
+                                        Software development for fast-growing businesses. Started my journey in professional software development and learned the fundamentals of building scalable applications.
+                                    </p>
+                                    
+                                    <div class="grid md:grid-cols-2 gap-4">
+                                        <div class="space-y-3">
+                                            <div class="flex items-start">
+                                                <i class="fas fa-chart-line text-green-500 mr-3 mt-1"></i>
+                                                <span class="text-sm text-gray-600">Test coverage improvements</span>
+                                            </div>
+                                            <div class="flex items-start">
+                                                <i class="fas fa-cogs text-green-500 mr-3 mt-1"></i>
+                                                <span class="text-sm text-gray-600">Feature development & API expansion</span>
+                                            </div>
+                                        </div>
+                                        <div class="space-y-3">
+                                            <div class="flex items-start">
+                                                <i class="fas fa-users text-green-500 mr-3 mt-1"></i>
+                                                <span class="text-sm text-gray-600">Cross-functional Scrum team member</span>
+                                            </div>
+                                            <div class="flex items-start">
+                                                <i class="fas fa-check-double text-green-500 mr-3 mt-1"></i>
+                                                <span class="text-sm text-gray-600">TDD for reliable code</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 bg-white bg-grid">
+        <div class="container mx-auto px-6">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16 animate-slide-in-bottom">
+                    <h2 class="text-6xl font-display font-bold text-gray-900 mb-6">
+                        Skills & <span class="text-gradient-orange">Tools</span>
+                    </h2>
+                    <div class="w-24 h-1 bg-gradient-to-r from-orange-500 to-orange-600 mx-auto"></div>
+                </div>
+                
+                <div class="grid lg:grid-cols-3 gap-8">
+                    <!-- Backend -->
+                    <div class="animate-slide-in-left">
+                        <div class="bg-gradient-to-br from-red-50 to-red-100 p-8 rounded-3xl card-hover h-full">
+                            <div class="text-center mb-8">
+                                <div class="w-20 h-20 bg-gradient-to-br from-red-500 to-red-600 rounded-3xl flex items-center justify-center mx-auto mb-4">
+                                    <i class="fas fa-server text-white text-3xl"></i>
+                                </div>
+                                <h3 class="text-2xl font-display font-bold text-gray-900">Backend</h3>
+                            </div>
+                            
+                            <div class="space-y-6">
+                                <div class="bg-white p-4 rounded-2xl">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="font-semibold">Ruby on Rails</span>
+                                        <i class="fab fa-ruby text-red-500"></i>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-2">
+                                        <div class="bg-gradient-to-r from-red-500 to-red-600 h-2 rounded-full w-11/12"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-white p-4 rounded-2xl">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="font-semibold">PostgreSQL</span>
+                                        <i class="fas fa-database text-blue-500"></i>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-2">
+                                        <div class="bg-gradient-to-r from-blue-500 to-blue-600 h-2 rounded-full w-5/6"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-white p-4 rounded-2xl">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="font-semibold">REST APIs</span>
+                                        <i class="fas fa-exchange-alt text-green-500"></i>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-2">
+                                        <div class="bg-gradient-to-r from-green-500 to-green-600 h-2 rounded-full w-5/6"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Frontend -->
+                    <div class="animate-slide-in-bottom">
+                        <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-3xl card-hover h-full">
+                            <div class="text-center mb-8">
+                                <div class="w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-600 rounded-3xl flex items-center justify-center mx-auto mb-4">
+                                    <i class="fas fa-palette text-white text-3xl"></i>
+                                </div>
+                                <h3 class="text-2xl font-display font-bold text-gray-900">Frontend</h3>
+                            </div>
+                            
+                            <div class="space-y-6">
+                                <div class="bg-white p-4 rounded-2xl">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="font-semibold">Vue.js</span>
+                                        <i class="fab fa-vuejs text-green-500"></i>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-2">
+                                        <div class="bg-gradient-to-r from-green-500 to-green-600 h-2 rounded-full w-5/6"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-white p-4 rounded-2xl">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="font-semibold">Hotwire</span>
+                                        <i class="fas fa-bolt text-yellow-500"></i>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-2">
+                                        <div class="bg-gradient-to-r from-yellow-500 to-yellow-600 h-2 rounded-full w-3/4"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-white p-4 rounded-2xl">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="font-semibold">JavaScript</span>
+                                        <i class="fab fa-js text-yellow-400"></i>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-2">
+                                        <div class="bg-gradient-to-r from-yellow-400 to-yellow-500 h-2 rounded-full w-4/5"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- DevOps & Testing -->
+                    <div class="animate-slide-in-right">
+                        <div class="bg-gradient-to-br from-purple-50 to-purple-100 p-8 rounded-3xl card-hover h-full">
+                            <div class="text-center mb-8">
+                                <div class="w-20 h-20 bg-gradient-to-br from-purple-500 to-purple-600 rounded-3xl flex items-center justify-center mx-auto mb-4">
+                                    <i class="fas fa-cogs text-white text-3xl"></i>
+                                </div>
+                                <h3 class="text-2xl font-display font-bold text-gray-900">DevOps & Testing</h3>
+                            </div>
+                            
+                            <div class="space-y-6">
+                                <div class="bg-white p-4 rounded-2xl">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="font-semibold">Docker</span>
+                                        <i class="fab fa-docker text-blue-500"></i>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-2">
+                                        <div class="bg-gradient-to-r from-blue-500 to-blue-600 h-2 rounded-full w-3/4"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-white p-4 rounded-2xl">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="font-semibold">RSpec/TDD</span>
+                                        <i class="fas fa-vial text-green-500"></i>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-2">
+                                        <div class="bg-gradient-to-r from-green-500 to-green-600 h-2 rounded-full w-5/6"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-white p-4 rounded-2xl">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="font-semibold">Cypress E2E</span>
+                                        <i class="fas fa-robot text-purple-500"></i>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-2">
+                                        <div class="bg-gradient-to-r from-purple-500 to-purple-600 h-2 rounded-full w-4/5"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Additional Tools -->
+                <div class="mt-16 animate-zoom-in">
+                    <div class="bg-gray-900 p-8 rounded-3xl">
+                        <h3 class="text-2xl font-display font-bold text-white text-center mb-8">Additional Tools & Technologies</h3>
+                        <div class="grid grid-cols-3 md:grid-cols-6 lg:grid-cols-8 gap-6">
+                            <div class="text-center">
+                                <i class="fab fa-git-alt text-orange-500 text-3xl mb-2"></i>
+                                <p class="text-white text-sm">Git</p>
+                            </div>
+                            <div class="text-center">
+                                <i class="fas fa-database text-red-500 text-3xl mb-2"></i>
+                                <p class="text-white text-sm">Redis</p>
+                            </div>
+                            <div class="text-center">
+                                <i class="fas fa-tasks text-blue-500 text-3xl mb-2"></i>
+                                <p class="text-white text-sm">Sidekiq</p>
+                            </div>
+                            <div class="text-center">
+                                <i class="fas fa-bug text-purple-500 text-3xl mb-2"></i>
+                                <p class="text-white text-sm">Sentry</p>
+                            </div>
+                            <div class="text-center">
+                                <i class="fas fa-infinity text-green-500 text-3xl mb-2"></i>
+                                <p class="text-white text-sm">CI/CD</p>
+                            </div>
+                            <div class="text-center">
+                                <i class="fas fa-users text-yellow-500 text-3xl mb-2"></i>
+                                <p class="text-white text-sm">Agile</p>
+                            </div>
+                            <div class="text-center">
+                                <i class="fas fa-handshake text-pink-500 text-3xl mb-2"></i>
+                                <p class="text-white text-sm">Scrum</p>
+                            </div>
+                            <div class="text-center">
+                                <i class="fas fa-chart-line text-teal-500 text-3xl mb-2"></i>
+                                <p class="text-white text-sm">Analytics</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto text-center">
+                <div class="animate-slide-in-bottom">
+                    <h2 class="text-6xl font-display font-bold text-gray-900 mb-6">
+                        Let's <span class="text-gradient-orange">Connect</span>
+                    </h2>
+                    <div class="w-24 h-1 bg-gradient-to-r from-orange-500 to-orange-600 mx-auto mb-8"></div>
+                    <p class="text-xl text-gray-600 mb-12 max-w-2xl mx-auto">
+                        Ready to build something amazing together? I'm always open to discussing new opportunities and interesting projects.
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-8 mb-16">
+                    <div class="animate-slide-in-left">
+                        <a href="mailto:kia.kamangar@gmail.com" class="block bg-white p-8 rounded-3xl shadow-lg card-hover">
+                            <div class="w-16 h-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-envelope text-white text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-display font-bold text-gray-900 mb-2">Email Me</h3>
+                            <p class="text-gray-600">kia.kamangar@gmail.com</p>
+                        </a>
+                    </div>
+                    
+                    <div class="animate-slide-in-bottom">
+                        <a href="tel:+4917616742070" class="block bg-white p-8 rounded-3xl shadow-lg card-hover">
+                            <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-phone text-white text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-display font-bold text-gray-900 mb-2">Call Me</h3>
+                            <p class="text-gray-600">+49 176 16742070</p>
+                        </a>
+                    </div>
+                    
+                    <div class="animate-slide-in-right">
+                        <div class="bg-white p-8 rounded-3xl shadow-lg card-hover">
+                            <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-map-marker-alt text-white text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-display font-bold text-gray-900 mb-2">Location</h3>
+                            <p class="text-gray-600">Berlin, Germany</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Reference -->
+                <div class="animate-zoom-in">
+                    <div class="bg-gradient-to-r from-orange-500 to-orange-600 p-8 rounded-3xl text-white">
+                        <h3 class="text-2xl font-display font-bold mb-6">Professional Reference</h3>
+                        <div class="grid md:grid-cols-2 gap-8 items-center">
+                            <div>
+                                <h4 class="text-xl font-bold">Ference Brose</h4>
+                                <p class="text-orange-100 mb-4">DataGuard CTO • Buzzjective CEO</p>
+                                <a href="mailto:ference@brose.io" class="inline-flex items-center text-white hover:text-orange-100 transition-colors">
+                                    <i class="fas fa-envelope mr-2"></i>
+                                    ference@brose.io
+                                </a>
+                            </div>
+                            <div class="text-6xl opacity-20">
+                                <i class="fas fa-quote-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-gray-900 text-white">
+        <div class="container mx-auto px-6 text-center">
+            <div class="text-3xl font-display font-bold text-gradient-orange mb-4">
+                Kianoosh Kamangar
+            </div>
+            <p class="text-gray-400 mb-6">Software Engineer • Ruby on Rails Expert • Problem Solver</p>
+            <div class="w-24 h-1 bg-gradient-to-r from-orange-500 to-orange-600 mx-auto mb-6"></div>
+            <p class="text-gray-500">
+                © 2025 Built with passion and attention to detail
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0) translateX(0) scale(1)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe animated elements
+        document.querySelectorAll('[class*="animate-"]').forEach(element => {
+            element.style.opacity = '0';
+            element.style.transition = 'all 0.8s ease-out';
+            
+            if (element.classList.contains('animate-slide-in-left')) {
+                element.style.transform = 'translateX(-100px)';
+            } else if (element.classList.contains('animate-slide-in-right')) {
+                element.style.transform = 'translateX(100px)';
+            } else if (element.classList.contains('animate-slide-in-bottom')) {
+                element.style.transform = 'translateY(100px)';
+            } else if (element.classList.contains('animate-zoom-in')) {
+                element.style.transform = 'scale(0.8)';
+            }
+            
+            observer.observe(element);
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                navbar.classList.add('shadow-lg');
+            } else {
+                navbar.classList.remove('shadow-lg');
+            }
+        });
+
+        // Parallax effect for blob shapes
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelectorAll('.blob');
+            parallax.forEach(element => {
+                const speed = 0.3;
+                element.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+    </script>
+</body>
+</html>
